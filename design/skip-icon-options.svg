@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="620" viewBox="0 0 1040 620" fill="none">
+  <rect width="1040" height="620" rx="28" fill="#FFF7E6"/>
+  <path d="M40 88C168 48 270 58 384 82C507 108 610 44 734 64C851 82 916 142 1000 104" stroke="#F2C8B9" stroke-width="9" stroke-linecap="round" stroke-dasharray="1 38"/>
+  <text x="56" y="62" fill="#2B2724" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="26" font-weight="800">跳过按钮图标方案</text>
+  <text x="56" y="98" fill="#746B62" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="16" font-weight="650">建议保持圆形按钮，只用图标表达；悬停或无障碍标签再说明具体动作。</text>
+
+  <g transform="translate(56 144)">
+    <rect width="170" height="196" rx="22" fill="#FFFDF7" stroke="#2B2724" stroke-width="4"/>
+    <circle cx="85" cy="76" r="48" fill="#FFFDF7" stroke="#2B2724" stroke-width="4"/>
+    <path d="M68 55L91 76L68 97V55Z" fill="#2B2724"/>
+    <path d="M98 56V96" stroke="#2B2724" stroke-width="6" stroke-linecap="round"/>
+    <text x="85" y="148" text-anchor="middle" fill="#2B2724" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="18" font-weight="850">A 下一段</text>
+    <text x="85" y="174" text-anchor="middle" fill="#746B62" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="13" font-weight="650">沿用现在语义</text>
+  </g>
+
+  <g transform="translate(250 144)">
+    <rect width="170" height="196" rx="22" fill="#FFFDF7" stroke="#2B2724" stroke-width="4"/>
+    <circle cx="85" cy="76" r="48" fill="#FFFDF7" stroke="#2B2724" stroke-width="4"/>
+    <path d="M62 82C70 61 93 53 110 68" stroke="#2B2724" stroke-width="6" stroke-linecap="round"/>
+    <path d="M109 55L110 68L97 69" stroke="#2B2724" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M108 82C100 103 77 111 60 96" stroke="#2B2724" stroke-width="6" stroke-linecap="round"/>
+    <path d="M61 109L60 96L73 95" stroke="#2B2724" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="85" y="148" text-anchor="middle" fill="#2B2724" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="18" font-weight="850">B 切换阶段</text>
+    <text x="85" y="174" text-anchor="middle" fill="#746B62" font-family="ui-rounded, 'SF Pro Rounded', sans-serif" font-size="13" font-weight="650">番茄 / 休息循环</text>
+  </g>
+
+  <g transform="translate(444 144)">
+    <rect width="170" height="196" rx="22" fill="#FFFDF7" stroke="#2B2724" stroke-width="4"/>
+    <circle cx="85" cy="76" r="48" fill="#FFFDF7" stroke="#2B2724" stroke-width="4"/>
+    <path d="M64 94C64 78 72 66 85 59C98 66 106 78 106 94" stroke="#2B2724" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M85 59V101" stroke="#2B2724" stroke-width="6" stroke-linecap="round"/>
+    <path d="M73 73C66 69 58 70 52 76C61 79 69 78 75 74" fill="#2B2724"/>
+    <path d="M97 73C104 69 112 70 118 76C109 79 101 78 95 74" fill="#2B2724"/>
+    <path d="M70 102H100" stroke="#2B2724" stroke-width="6" stroke-linecap="round"/>
+    <text x="85" y="148" text-anchor="middle" fill="#2B2724" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="18" font-weight="850">C 下一棵</text>
+    <text x="85" y="174" text-anchor="middle" fill="#746B62" font-family="ui-rounded, 'SF Pro Rounded', sans-serif" font-size="13" font-weight="650">更贴合森林概念</text>
+  </g>
+
+  <g transform="translate(638 144)">
+    <rect width="170" height="196" rx="22" fill="#FFFDF7" stroke="#2B2724" stroke-width="4"/>
+    <circle cx="85" cy="76" r="48" fill="#FFFDF7" stroke="#2B2724" stroke-width="4"/>
+    <path d="M65 102V53" stroke="#2B2724" stroke-width="6" stroke-linecap="round"/>
+    <path d="M67 56H107L99 71L107 86H67" fill="#2B2724"/>
+    <path d="M58 104H88" stroke="#2B2724" stroke-width="6" stroke-linecap="round"/>
+    <text x="85" y="148" text-anchor="middle" fill="#2B2724" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="18" font-weight="850">D 到终点</text>
+    <text x="85" y="174" text-anchor="middle" fill="#746B62" font-family="ui-rounded, 'SF Pro Rounded', sans-serif" font-size="13" font-weight="650">结束当前阶段</text>
+  </g>
+
+  <g transform="translate(832 144)">
+    <rect width="170" height="196" rx="22" fill="#FFFDF7" stroke="#2B2724" stroke-width="4"/>
+    <circle cx="85" cy="76" r="48" fill="#FFFDF7" stroke="#2B2724" stroke-width="4"/>
+    <path d="M61 93C61 84 69 78 80 78H102" stroke="#2B2724" stroke-width="6" stroke-linecap="round"/>
+    <path d="M93 64L108 78L93 92" stroke="#2B2724" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M62 59H78" stroke="#2B2724" stroke-width="6" stroke-linecap="round"/>
+    <path d="M62 105H78" stroke="#2B2724" stroke-width="6" stroke-linecap="round"/>
+    <text x="85" y="148" text-anchor="middle" fill="#2B2724" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="18" font-weight="850">E 走下一步</text>
+    <text x="85" y="174" text-anchor="middle" fill="#746B62" font-family="ui-rounded, 'SF Pro Rounded', sans-serif" font-size="13" font-weight="650">温和，不像跳过</text>
+  </g>
+
+  <g transform="translate(56 390)">
+    <rect width="948" height="142" rx="24" fill="#F8EEDC" stroke="#2B2724" stroke-width="3"/>
+    <text x="28" y="42" fill="#2B2724" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="18" font-weight="850">我更推荐</text>
+    <text x="28" y="78" fill="#2B2724" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="18" font-weight="760">C “下一棵”：最贴合你现在的菜单栏森林和统计逻辑。</text>
+    <text x="28" y="110" fill="#746B62" font-family="ui-rounded, 'SF Pro Rounded', 'PingFang SC', sans-serif" font-size="15" font-weight="650">如果你想更通用一点，选 B；如果想最接近原来的跳过语义，选 A。</text>
+  </g>
+</svg>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>贴纸番茄钟 · 使用指南</title>
+<style>
+  :root {
+    --bg: #fdf9f2;
+    --card: #fff;
+    --ink: #3b3328;
+    --muted: #8c8175;
+    --accent: #e8956c;
+    --accent-soft: #fdf0e7;
+    --line: #eee6da;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(0,0,0,.04);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Heiti SC", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 60px 24px 100px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 48px 0 36px;
+  }
+  .hero img { width: 96px; margin-bottom: 16px; }
+  .hero h1 { font-size: 2rem; font-weight: 700; letter-spacing: .02em; }
+  .hero p  { color: var(--muted); font-size: 1.05rem; margin-top: 6px; }
+  .hero .badge {
+    display: inline-block; margin-top: 14px;
+    background: var(--accent-soft); color: var(--accent);
+    padding: 4px 16px; border-radius: 20px; font-size: .88rem;
+    font-weight: 600;
+  }
+
+  /* Section */
+  section { margin-top: 48px; }
+  h2 {
+    font-size: 1.35rem; font-weight: 700;
+    padding-bottom: 8px; margin-bottom: 18px;
+    border-bottom: 2px solid var(--line);
+    display: flex; align-items: center; gap: 8px;
+  }
+  h3 {
+    font-size: 1.1rem; font-weight: 650; margin: 28px 0 10px;
+  }
+  p { margin-bottom: 10px; color: #524b40; }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 32px;
+    margin-bottom: 18px;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .card-grid .card { margin-bottom: 0; padding: 22px 24px; }
+
+  /* Steps */
+  ol.steps { counter-reset: step; list-style: none; padding: 0; }
+  ol.steps li {
+    counter-increment: step; position: relative;
+    padding-left: 44px; margin-bottom: 20px;
+  }
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 1px;
+    width: 28px; height: 28px;
+    background: var(--accent-soft); color: var(--accent);
+    border-radius: 50%;
+    font-size: .85rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Images */
+  .img-block { text-align: center; margin: 24px 0; }
+  .img-block img {
+    max-width: 100%; border-radius: var(--radius);
+    box-shadow: 0 4px 24px rgba(0,0,0,.06);
+  }
+  .img-row {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin: 24px 0;
+  }
+  .img-row img {
+    width: calc(33.333% - 8px); min-width: 160px; max-width: 240px;
+    border-radius: var(--radius); box-shadow: 0 4px 24px rgba(0,0,0,.06);
+  }
+  .img-caption { font-size: .85rem; color: var(--muted); margin-top: 6px; }
+
+  /* Tips */
+  .tip {
+    background: #fef9ec; border-left: 3px solid #e2c971;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 18px; margin: 16px 0;
+    font-size: .92rem;
+  }
+  .tip strong { color: #b3952d; }
+
+  /* Code */
+  code {
+    background: #f3efe7; padding: 2px 7px; border-radius: 5px;
+    font-size: .9em; font-family: "SF Mono", "Cascadia Code", monospace;
+  }
+  pre {
+    background: #2b2724; color: #f5efe5; padding: 16px 20px;
+    border-radius: var(--radius); overflow-x: auto;
+    font-size: .88rem; line-height: 1.6;
+    margin: 12px 0;
+  }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  th { font-weight: 650; font-size: .85rem; color: var(--muted); }
+  td { font-size: .92rem; }
+
+  /* Print */
+  @media print {
+    body { padding: 0; background: none; }
+    .card { box-shadow: none; border: 1px solid #e0d8c8; }
+    .page { max-width: 100%; }
+    h2 { break-after: avoid; }
+    .card { break-inside: avoid; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ Hero ═══ -->
+<header class="hero">
+  <img src="Icon.png" alt="贴纸番茄钟图标">
+  <h1>贴纸番茄钟 · 使用指南</h1>
+  <p>可爱风的 macOS 番茄工作法计时器 — 种树、打卡、放轻松</p>
+  <span class="badge">v1.1.0 · 仅支持 macOS</span>
+</header>
+
+<!-- ═══ 安装 ═══ -->
+<section>
+  <h2>📥 下载与安装</h2>
+  <ol class="steps">
+    <li>
+      <strong>下载 DMG</strong><br>
+      前往 <a href="https://github.com/Yukon594/stickers-pomodoro/releases">GitHub Releases</a> 页面，
+      下载 <code>贴纸番茄钟_x.x.x_aarch64.dmg</code>。
+    </li>
+    <li>
+      <strong>拖入应用程序</strong><br>
+      打开 DMG，将 <code>贴纸番茄钟.app</code> 拖入 <code>应用程序</code> 文件夹。
+    </li>
+    <li>
+      <strong>解除 macOS 隔离</strong><br>
+      应用未签名，首次使用前在终端粘贴运行：
+      <pre>xattr -d com.apple.quarantine /Applications/贴纸番茄钟.app</pre>
+    </li>
+    <li>
+      <strong>双击打开</strong><br>
+      之后就可以正常双击启动了。后续再打开不会被拦截。
+    </li>
+  </ol>
+</section>
+
+<!-- ═══ 主界面 ═══ -->
+<section>
+  <h2>🏠 认识主界面</h2>
+  <div class="img-block">
+    <img src="%E5%9B%BE%E7%89%87/%E4%B8%BB%E7%95%8C%E9%9D%A2.png" alt="主界面">
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>左上角</h3>
+      <p>个人头像 + 工具栏（今日、统计、设置）。点击头像可以上传自己的小人图。</p>
+    </div>
+    <div class="card">
+      <h3>中央拨盘</h3>
+      <p>红色的圆形区域就是开始/暂停按钮。外圈显示剩余时间，进度环随计时增长。</p>
+    </div>
+    <div class="card">
+      <h3>窗口控制</h3>
+      <p>左上角的红绿灯按钮：关闭 = 隐藏到菜单栏（不退出），黄色 = 最小化，绿色 = 缩放。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 计时 ═══ -->
+<section>
+  <h2>⏱ 开始专注</h2>
+
+  <h3>方式一：主界面按钮</h3>
+  <ol class="steps">
+    <li>选择计时模式：<strong>倒计时</strong>（预设 25 分钟）或 <strong>正计时</strong>（不限时）</li>
+    <li>打开项目菜单，选择本次专注归属的项目</li>
+    <li>点击中央圆盘开始 — 窗口自动最小化，菜单栏树苗开始生长</li>
+    <li>计时结束弹出提醒，可选择「休息一下」或直接开启「下一棵树」</li>
+  </ol>
+
+  <h3>方式二：快速开始</h3>
+  <p>打开「今日」面板，顶部的快速开始卡片预设了读书、健身、写作、整理四种场景。<br>
+  点一下直接启动，不用再调时间、选项目。每个卡片的时间、名称和归属项目都可以编辑。</p>
+
+  <h3>方式三：全局快捷键</h3>
+  <p>默认 <code>Ctrl + Alt + P</code>。任何时候按下 — 即使贴纸番茄钟在后台 — 都会立即开始一轮 25 分钟专注。<br>
+  快捷键可以在设置里自定义，也可以关闭。</p>
+
+  <div class="tip">
+    <strong>💡 提示</strong>：专注中再次按快捷键不会暂停。如果要暂停或跳过，请在菜单栏右键图标操作。
+  </div>
+
+  <h3>休息与跳过</h3>
+  <p>每轮专注结束默认接 5 分钟休息。休息期间菜单栏图标会变成充电电池样式。<br>
+  不想休息？点击 <strong>跳过</strong> 按钮直接开始下一轮。也可以点 <strong>重置</strong> 回到初始状态。</p>
+</section>
+
+<!-- ═══ 今日待办 ═══ -->
+<section>
+  <h2>📋 今日待办 (Todolist)</h2>
+  <div class="img-block">
+    <img src="%E5%9B%BE%E7%89%87/%E2%80%9C%E4%BB%8A%E6%97%A5%E2%80%9D%E6%9D%BF%E5%9D%97.png" alt="今日板块">
+  </div>
+  <ol class="steps">
+    <li>在底部输入框填写任务名、预计分钟数、归属项目，点击 <strong>+</strong> 添加</li>
+    <li>点击任务行选中，然后中央拨盘下方会显示当前任务标签</li>
+    <li>专注结束后，该任务自动累计专注秒数和树数</li>
+    <li>打勾完成的任务移到「Done list」，可以撤回</li>
+    <li>长按拖拽可以调整任务顺序</li>
+    <li>双击任务名可以编辑标题</li>
+  </ol>
+</section>
+
+<!-- ═══ 统计 ═══ -->
+<section>
+  <h2>🌲 森林统计</h2>
+  <div class="img-block">
+    <img src="%E5%9B%BE%E7%89%87/%E7%BB%9F%E8%AE%A1%E6%9D%BF%E5%9D%97.png" alt="统计板块">
+  </div>
+  <p>点击主界面的「统计」按钮打开：</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3>热力图</h3>
+      <p>12 周热度方块，类似 GitHub 贡献图。颜色越深表示当天专注越多。</p>
+    </div>
+    <div class="card">
+      <h3>切换指标</h3>
+      <p>「树」= 完成轮数，「时长」= 总专注分钟。按项目筛选只看某个分类。</p>
+    </div>
+    <div class="card">
+      <h3>三级汇总</h3>
+      <p>今日 / 本周 / 本月 的树数和时长一目了然。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 设置 ═══ -->
+<section>
+  <h2>⚙ 个性化设置</h2>
+  <div class="img-row">
+    <img src="%E5%9B%BE%E7%89%87/%E8%AE%BE%E7%BD%AE1.png" alt="设置-主题与背景">
+    <img src="%E5%9B%BE%E7%89%87/%E8%AE%BE%E7%BD%AE2.png" alt="设置-提醒与快捷键">
+    <img src="%E5%9B%BE%E7%89%87/%E8%AE%BE%E7%BD%AE3.png" alt="设置-项目与贴纸">
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>🎨 主题</h3>
+      <p>4 种配色：奶油（默认）、薄荷、樱桃、夜晚。开启「跟随系统」自动随深浅色切换。</p>
+    </div>
+    <div class="card">
+      <h3>🖼 背景</h3>
+      <p>上传自定义背景图，铺满或完整显示，调节透明度。打开「自动匹配」会从图片提取配色。</p>
+    </div>
+    <div class="card">
+      <h3>🔔 提醒</h3>
+      <p>选择弹窗位置（左上/上中/右上）。14 种系统提示音可选。自定义四类提醒文案。</p>
+    </div>
+    <div class="card">
+      <h3>⌨ 快捷键</h3>
+      <p>点击快捷键按钮进入捕获模式，按下组合键即可设定。默认 Ctrl+Alt+P。</p>
+    </div>
+    <div class="card">
+      <h3>🌱 菜单栏树</h3>
+      <p>5 种树样式：圆润幼苗、像素小树、小盆栽（默认）、松树剪影、手账印章。</p>
+    </div>
+    <div class="card">
+      <h3>📂 项目管理</h3>
+      <p>创建、重命名、删除项目，8 种颜色可选。删除项目需要确认。</p>
+    </div>
+    <div class="card">
+      <h3>🏷 贴纸布置</h3>
+      <p>上传图片作为背景贴纸，自由拖拽、旋转、翻转、缩放。最多 24 张。</p>
+    </div>
+    <div class="card">
+      <h3>👤 头像</h3>
+      <p>上传小人头像，会出现在提醒弹窗中。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 菜单栏 ═══ -->
+<section>
+  <h2>🍃 菜单栏操作</h2>
+  <p>贴纸番茄钟常驻 macOS 菜单栏。右键（或左键）图标弹出菜单：</p>
+  <table>
+    <tr><th>菜单项</th><th>作用</th></tr>
+    <tr><td>打开贴纸番茄钟</td><td>显示主窗口</td></tr>
+    <tr><td>开始 / 暂停</td><td>切换计时状态</td></tr>
+    <tr><td>重置</td><td>重置当前计时</td></tr>
+    <tr><td>查看森林统计</td><td>打开统计面板</td></tr>
+    <tr><td>退出</td><td>完全退出应用</td></tr>
+  </table>
+  <p>菜单栏图标本身也会显示剩余时间和今日树数。按住 <code>⌘Command</code> 可以拖动图标调整位置。</p>
+  <div class="tip">
+    <strong>💡 如果图标不显示</strong>：检查是否有 Bartender、Hidden Bar 等第三方工具隐藏了它；也可尝试重启菜单栏：<code>killall SystemUIServer</code>。
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section>
+  <h2>❓ 常见问题</h2>
+  <div class="card">
+    <h3>窗口关了怎么重新打开？</h3>
+    <p>点击菜单栏的树图标，选择「打开贴纸番茄钟」。关闭按钮只是隐藏，不会退出应用。</p>
+  </div>
+  <div class="card">
+    <h3>正计时和倒计时有什么区别？</h3>
+    <p>倒计时是设定好的番茄钟（默认 25 分钟专注 + 5 分钟休息）；正计时是自由计时，每满一个周期自动算一棵树。</p>
+  </div>
+  <div class="card">
+    <h3>数据保存在哪里？</h3>
+    <p>所有数据（头像、贴纸、背景、统计）都以 JSON 文件存在本地 <code>~/Library/Application Support/com.stickerpomodoro.timer/</code>，不会上传到任何服务器。</p>
+  </div>
+  <div class="card">
+    <h3>如何更新到新版本？</h3>
+    <p>去 GitHub Releases 下载最新 DMG，替换旧的 .app 即可，设置数据会自动迁移。</p>
+  </div>
+</section>
+
+<p style="text-align:center; color: var(--muted); margin-top: 60px; font-size: .88rem;">
+  Yukon594 / stickers-pomodoro · MIT License
+</p>
+
+</div>
+</body>
+</html>

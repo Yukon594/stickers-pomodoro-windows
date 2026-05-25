@@ -1,0 +1,248 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="900" viewBox="0 0 1320 900">
+  <defs>
+    <style>
+      .bg { fill: #fbf7f1; }
+      .panel { fill: #fffaf3; stroke: #eaded0; stroke-width: 2; }
+      .strip { fill: #f5eee6; stroke: #e4d7c9; stroke-width: 1.5; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 34px; font-weight: 700; fill: #3b3028; }
+      .sub { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 18px; fill: #7a6a5e; }
+      .label { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 22px; font-weight: 700; fill: #3b3028; }
+      .note { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 16px; fill: #75685f; }
+      .tiny { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; fill: #8b7d72; }
+      .menu-text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 16px; fill: #4a3e36; }
+      .icon { fill: none; stroke: #111; stroke-width: 2.7; stroke-linecap: round; stroke-linejoin: round; }
+      .solid { fill: #111; stroke: none; }
+      .soft { fill: #111; opacity: .18; stroke: none; }
+      .accent { fill: #e8c986; stroke: none; opacity: .55; }
+      .dash { fill: none; stroke: #111; stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 2.5 4; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1320" height="900"/>
+  <text class="title" x="64" y="70">Rest Countdown Charging Icon Concepts</text>
+  <text class="sub" x="64" y="102">Monochrome 18x18 menu-bar template icon directions. Each row shows 0%, 25%, 50%, 75%, and 100% rest progress.</text>
+
+  <g transform="translate(64 135)">
+    <rect class="strip" x="0" y="0" width="1192" height="54" rx="14"/>
+    <circle cx="32" cy="27" r="7" fill="#d77064"/>
+    <circle cx="56" cy="27" r="7" fill="#e4b64e"/>
+    <circle cx="80" cy="27" r="7" fill="#70b17b"/>
+    <text class="menu-text" x="112" y="33">Sticker Pomodoro</text>
+    <g transform="translate(1014 18) scale(.72)">
+      <use href="#battery-3"/>
+    </g>
+    <text class="menu-text" x="1045" y="33">03:48 · 2 trees</text>
+  </g>
+
+  <g transform="translate(64 226)">
+    <rect class="panel" width="1192" height="138" rx="20"/>
+    <text class="label" x="28" y="42">A. Battery Fill</text>
+    <text class="note" x="28" y="72">Most literal and readable: the battery fills as the break restores energy.</text>
+    <g transform="translate(410 32)">
+      <use href="#battery-0"/>
+      <text class="tiny" x="-6" y="75">0%</text>
+    </g>
+    <g transform="translate(540 32)">
+      <use href="#battery-1"/>
+      <text class="tiny" x="-10" y="75">25%</text>
+    </g>
+    <g transform="translate(670 32)">
+      <use href="#battery-2"/>
+      <text class="tiny" x="-10" y="75">50%</text>
+    </g>
+    <g transform="translate(800 32)">
+      <use href="#battery-3"/>
+      <text class="tiny" x="-10" y="75">75%</text>
+    </g>
+    <g transform="translate(930 32)">
+      <use href="#battery-4"/>
+      <text class="tiny" x="-14" y="75">100%</text>
+    </g>
+  </g>
+
+  <g transform="translate(64 388)">
+    <rect class="panel" width="1192" height="138" rx="20"/>
+    <text class="label" x="28" y="42">B. Plug Spark</text>
+    <text class="note" x="28" y="72">Cute and active: a plug settles into a spark, then becomes fully charged.</text>
+    <g transform="translate(410 32)">
+      <use href="#plug-0"/>
+      <text class="tiny" x="-6" y="75">0%</text>
+    </g>
+    <g transform="translate(540 32)">
+      <use href="#plug-1"/>
+      <text class="tiny" x="-10" y="75">25%</text>
+    </g>
+    <g transform="translate(670 32)">
+      <use href="#plug-2"/>
+      <text class="tiny" x="-10" y="75">50%</text>
+    </g>
+    <g transform="translate(800 32)">
+      <use href="#plug-3"/>
+      <text class="tiny" x="-10" y="75">75%</text>
+    </g>
+    <g transform="translate(930 32)">
+      <use href="#plug-4"/>
+      <text class="tiny" x="-14" y="75">100%</text>
+    </g>
+  </g>
+
+  <g transform="translate(64 550)">
+    <rect class="panel" width="1192" height="138" rx="20"/>
+    <text class="label" x="28" y="42">C. Charging Halo</text>
+    <text class="note" x="28" y="72">Closest to the current circular timer language: the ring quietly fills around a bolt.</text>
+    <g transform="translate(410 32)">
+      <use href="#halo-0"/>
+      <text class="tiny" x="-6" y="75">0%</text>
+    </g>
+    <g transform="translate(540 32)">
+      <use href="#halo-1"/>
+      <text class="tiny" x="-10" y="75">25%</text>
+    </g>
+    <g transform="translate(670 32)">
+      <use href="#halo-2"/>
+      <text class="tiny" x="-10" y="75">50%</text>
+    </g>
+    <g transform="translate(800 32)">
+      <use href="#halo-3"/>
+      <text class="tiny" x="-10" y="75">75%</text>
+    </g>
+    <g transform="translate(930 32)">
+      <use href="#halo-4"/>
+      <text class="tiny" x="-14" y="75">100%</text>
+    </g>
+  </g>
+
+  <g transform="translate(64 712)">
+    <rect class="panel" width="1192" height="138" rx="20"/>
+    <text class="label" x="28" y="42">D. Rest Capsule</text>
+    <text class="note" x="28" y="72">Softest version: a rounded energy capsule fills up, less technical than a battery.</text>
+    <g transform="translate(410 32)">
+      <use href="#capsule-0"/>
+      <text class="tiny" x="-6" y="75">0%</text>
+    </g>
+    <g transform="translate(540 32)">
+      <use href="#capsule-1"/>
+      <text class="tiny" x="-10" y="75">25%</text>
+    </g>
+    <g transform="translate(670 32)">
+      <use href="#capsule-2"/>
+      <text class="tiny" x="-10" y="75">50%</text>
+    </g>
+    <g transform="translate(800 32)">
+      <use href="#capsule-3"/>
+      <text class="tiny" x="-10" y="75">75%</text>
+    </g>
+    <g transform="translate(930 32)">
+      <use href="#capsule-4"/>
+      <text class="tiny" x="-14" y="75">100%</text>
+    </g>
+  </g>
+
+  <g id="battery-0" transform="scale(2.4)">
+    <rect class="icon" x="2.2" y="5.2" width="12" height="7.6" rx="2"/>
+    <path class="icon" d="M14.8 8h1.7v2"/>
+    <path class="icon" d="M8.8 3.2l-2 4.2h3.1l-1.7 4.4"/>
+  </g>
+  <g id="battery-1" transform="scale(2.4)">
+    <rect class="icon" x="2.2" y="5.2" width="12" height="7.6" rx="2"/>
+    <rect class="solid" x="4" y="7" width="2.1" height="4"/>
+    <path class="icon" d="M14.8 8h1.7v2"/>
+    <path class="icon" d="M9.7 3.2l-2 4.2h3.1l-1.7 4.4"/>
+  </g>
+  <g id="battery-2" transform="scale(2.4)">
+    <rect class="icon" x="2.2" y="5.2" width="12" height="7.6" rx="2"/>
+    <rect class="solid" x="4" y="7" width="4.3" height="4"/>
+    <path class="icon" d="M14.8 8h1.7v2"/>
+    <path class="icon" d="M10.4 3.2l-2 4.2h3.1l-1.7 4.4"/>
+  </g>
+  <g id="battery-3" transform="scale(2.4)">
+    <rect class="icon" x="2.2" y="5.2" width="12" height="7.6" rx="2"/>
+    <rect class="solid" x="4" y="7" width="6.6" height="4"/>
+    <path class="icon" d="M14.8 8h1.7v2"/>
+    <path class="icon" d="M11.2 3.2l-2 4.2h3.1l-1.7 4.4"/>
+  </g>
+  <g id="battery-4" transform="scale(2.4)">
+    <rect class="icon" x="2.2" y="5.2" width="12" height="7.6" rx="2"/>
+    <rect class="solid" x="4" y="7" width="8.5" height="4"/>
+    <path class="icon" d="M14.8 8h1.7v2"/>
+    <path class="icon" d="M8 4.2l2.2 2.2 4.2-4.6"/>
+  </g>
+
+  <g id="plug-0" transform="scale(2.4)">
+    <path class="icon" d="M5.8 3.2v4.1M10.2 3.2v4.1M4.8 7.3h6.4v2.2a3.2 3.2 0 0 1-6.4 0z"/>
+    <path class="icon" d="M8 12.8v2.2"/>
+  </g>
+  <g id="plug-1" transform="scale(2.4)">
+    <path class="icon" d="M5.8 3.2v4.1M10.2 3.2v4.1M4.8 7.3h6.4v2.2a3.2 3.2 0 0 1-6.4 0z"/>
+    <path class="icon" d="M8 12.8v2.2"/>
+    <path class="icon" d="M13.2 5.2l.9-1.4"/>
+  </g>
+  <g id="plug-2" transform="scale(2.4)">
+    <path class="icon" d="M5.8 3.2v4.1M10.2 3.2v4.1M4.8 7.3h6.4v2.2a3.2 3.2 0 0 1-6.4 0z"/>
+    <path class="icon" d="M8 12.8v2.2"/>
+    <path class="icon" d="M13.2 5.2l.9-1.4M13.4 9h2"/>
+  </g>
+  <g id="plug-3" transform="scale(2.4)">
+    <path class="icon" d="M5.8 3.2v4.1M10.2 3.2v4.1M4.8 7.3h6.4v2.2a3.2 3.2 0 0 1-6.4 0z"/>
+    <path class="icon" d="M8 12.8v2.2"/>
+    <path class="icon" d="M13.2 5.2l.9-1.4M13.4 9h2M13.2 12.8l.9 1.4"/>
+  </g>
+  <g id="plug-4" transform="scale(2.4)">
+    <path class="icon" d="M5.8 3.2v4.1M10.2 3.2v4.1M4.8 7.3h6.4v2.2a3.2 3.2 0 0 1-6.4 0z"/>
+    <path class="icon" d="M8 12.8v2.2"/>
+    <path class="icon" d="M13.2 5.2l.9-1.4M13.4 9h2M13.2 12.8l.9 1.4"/>
+    <circle class="solid" cx="8" cy="9.5" r="1.2"/>
+  </g>
+
+  <g id="halo-0" transform="scale(2.4)">
+    <circle class="dash" cx="9" cy="9" r="6.7"/>
+    <path class="solid" d="M9.8 2.8 5.9 9h3l-1 6.2 4.1-7h-3z"/>
+  </g>
+  <g id="halo-1" transform="scale(2.4)">
+    <path class="icon" d="M9 2.3a6.7 6.7 0 0 1 6.7 6.7"/>
+    <path class="dash" d="M15.7 9A6.7 6.7 0 1 1 9 2.3"/>
+    <path class="solid" d="M9.8 2.8 5.9 9h3l-1 6.2 4.1-7h-3z"/>
+  </g>
+  <g id="halo-2" transform="scale(2.4)">
+    <path class="icon" d="M9 2.3a6.7 6.7 0 0 1 0 13.4"/>
+    <path class="dash" d="M9 15.7A6.7 6.7 0 0 1 9 2.3"/>
+    <path class="solid" d="M9.8 2.8 5.9 9h3l-1 6.2 4.1-7h-3z"/>
+  </g>
+  <g id="halo-3" transform="scale(2.4)">
+    <path class="icon" d="M9 2.3a6.7 6.7 0 1 1-6.7 6.7"/>
+    <path class="dash" d="M2.3 9A6.7 6.7 0 0 1 9 2.3"/>
+    <path class="solid" d="M9.8 2.8 5.9 9h3l-1 6.2 4.1-7h-3z"/>
+  </g>
+  <g id="halo-4" transform="scale(2.4)">
+    <circle class="icon" cx="9" cy="9" r="6.7"/>
+    <path class="solid" d="M9.8 2.8 5.9 9h3l-1 6.2 4.1-7h-3z"/>
+  </g>
+
+  <g id="capsule-0" transform="scale(2.4)">
+    <rect class="icon" x="3" y="4.8" width="12" height="8.4" rx="4.2"/>
+    <path class="icon" d="M6 15.4h6"/>
+  </g>
+  <g id="capsule-1" transform="scale(2.4)">
+    <rect class="icon" x="3" y="4.8" width="12" height="8.4" rx="4.2"/>
+    <circle class="solid" cx="6.2" cy="9" r="1.25"/>
+    <path class="icon" d="M6 15.4h6"/>
+  </g>
+  <g id="capsule-2" transform="scale(2.4)">
+    <rect class="icon" x="3" y="4.8" width="12" height="8.4" rx="4.2"/>
+    <circle class="solid" cx="6.2" cy="9" r="1.25"/>
+    <circle class="solid" cx="9" cy="9" r="1.25"/>
+    <path class="icon" d="M6 15.4h6"/>
+  </g>
+  <g id="capsule-3" transform="scale(2.4)">
+    <rect class="icon" x="3" y="4.8" width="12" height="8.4" rx="4.2"/>
+    <circle class="solid" cx="6.2" cy="9" r="1.25"/>
+    <circle class="solid" cx="9" cy="9" r="1.25"/>
+    <circle class="solid" cx="11.8" cy="9" r="1.25"/>
+    <path class="icon" d="M6 15.4h6"/>
+  </g>
+  <g id="capsule-4" transform="scale(2.4)">
+    <rect class="icon" x="3" y="4.8" width="12" height="8.4" rx="4.2"/>
+    <rect class="solid" x="5.2" y="7.3" width="7.6" height="3.4" rx="1.7"/>
+    <path class="icon" d="M6 15.4h6"/>
+  </g>
+</svg>

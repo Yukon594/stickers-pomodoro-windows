@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>贴纸番茄钟 · 产品介绍</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700;6..96,800&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* ===========================================
+   CSS CUSTOM PROPERTIES — Style B: Cream & Blush
+   =========================================== */
+:root {
+  --bg-cream: #faf7f4;
+  --bg-card: rgba(255,255,255,.78);
+  --ink: #3d2e2a;
+  --ink-soft: #6b5e58;
+  --muted: #b0a29c;
+  --blush: #e8c8c0;
+  --blush-soft: #f5e2dc;
+  --sage: #c4d8c8;
+  --sage-soft: #e4f0e4;
+  --gold: #d4a87c;
+  --divider: #dcc8bc;
+
+  --font-display: 'Bodoni Moda', 'Songti SC', 'Noto Serif SC', serif;
+  --font-body: 'DM Sans', 'PingFang SC', 'Heiti SC', sans-serif;
+
+  --title-size: clamp(1.6rem, 5vw, 3.6rem);
+  --h2-size: clamp(1.2rem, 3.2vw, 2rem);
+  --h3-size: clamp(0.95rem, 2vw, 1.35rem);
+  --body-size: clamp(0.75rem, 1.35vw, 1.05rem);
+  --small-size: clamp(0.65rem, 1vw, 0.85rem);
+
+  --slide-padding: clamp(1.5rem, 4vw, 4rem);
+  --content-gap: clamp(0.6rem, 1.5vw, 1.5rem);
+  --element-gap: clamp(0.3rem, 0.8vw, 0.8rem);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-normal: 0.7s;
+}
+
+/* ===========================================
+   VIEWPORT FITTING: MANDATORY BASE STYLES
+   =========================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow-x: hidden; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+.slide {
+  width: 100vw; height: 100vh; height: 100dvh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  display: flex; flex-direction: column; position: relative;
+  background: var(--bg-cream);
+  font-family: var(--font-body);
+}
+
+.slide-content {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center;
+  max-height: 100%; overflow: hidden;
+  padding: var(--slide-padding);
+  position: relative; z-index: 2;
+}
+
+img, .screenshot {
+  max-width: 100%; max-height: min(50vh, 400px); object-fit: contain;
+}
+.screenshot {
+  border-radius: clamp(10px, 1.5vw, 18px);
+  box-shadow: 0 6px 32px rgba(60,40,30,.1);
+}
+
+.card {
+  max-width: min(90vw, 800px); max-height: min(80vh, 600px);
+}
+
+/* ===========================================
+   STYLE B SIGNATURE: ORGANIC BLOBS
+   =========================================== */
+.blob {
+  position: absolute; border-radius: 40% 60% 55% 45% / 48% 42% 58% 52%;
+  filter: blur(50px); opacity: .4; z-index: 1; pointer-events: none;
+}
+.blob-blush { background: var(--blush-soft); }
+.blob-sage  { background: var(--sage-soft); }
+.divider-line {
+  width: clamp(36px, 5vw, 56px); height: 3px;
+  background: var(--divider); border-radius: 2px;
+}
+.accent-bar {
+  position: absolute; width: 2px; background: var(--divider);
+  top: 18%; bottom: 18%; opacity: .35; z-index: 0;
+}
+.accent-bar-l { left: clamp(1.5rem, 4vw, 4rem); }
+.accent-bar-r { right: clamp(1.5rem, 4vw, 4rem); }
+
+/* ===========================================
+   TYPOGRAPHY
+   =========================================== */
+h1 { font-family: var(--font-display); font-size: var(--title-size); font-weight: 800; color: var(--ink); letter-spacing: .02em; line-height: 1.2; }
+h2 { font-family: var(--font-display); font-size: var(--h2-size); font-weight: 700; color: var(--ink); letter-spacing: .01em; }
+h3 { font-size: var(--h3-size); font-weight: 600; color: var(--ink); }
+p, li { font-size: var(--body-size); color: var(--ink-soft); line-height: 1.65; }
+.tag { font-size: var(--small-size); color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: .08em; }
+
+/* ===========================================
+   LAYOUT HELPERS
+   =========================================== */
+.center { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.split { display: flex; gap: clamp(1rem, 2vw, 2.5rem); align-items: center; }
+.split > * { flex: 1; min-width: 0; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.6rem, 1.2vw, 1.2rem); max-width: min(90vw, 900px); }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(0.6rem, 1.2vw, 1.2rem); max-width: min(90vw, 800px); }
+.stat-card {
+  background: var(--bg-card); border-radius: clamp(10px, 1.2vw, 16px);
+  padding: clamp(0.8rem, 1.5vw, 1.5rem); text-align: center;
+}
+.stat-card .num { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 800; color: var(--blush); }
+.bullet-list { list-style: none; display: flex; flex-direction: column; gap: var(--element-gap); }
+.bullet-list li { display: flex; gap: 8px; align-items: flex-start; }
+.bullet-list li::before { content: '·'; font-size: 1.4em; color: var(--gold); line-height: 1; }
+.code-block {
+  background: #2b2724; color: #e8dcd0; padding: clamp(0.6rem, 1vw, 1rem) clamp(0.8rem, 1.5vw, 1.5rem);
+  border-radius: 10px; font-family: 'SF Mono', 'Cascadia Code', monospace;
+  font-size: var(--small-size); line-height: 1.6; display: inline-block;
+  max-width: 100%; word-break: break-all;
+}
+
+/* ===========================================
+   ANIMATIONS
+   =========================================== */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity var(--duration-normal) var(--ease-out-expo),
+              transform var(--duration-normal) var(--ease-out-expo);
+}
+.slide.visible .reveal { opacity: 1; transform: translateY(0); }
+.reveal:nth-child(1) { transition-delay: .08s; }
+.reveal:nth-child(2) { transition-delay: .16s; }
+.reveal:nth-child(3) { transition-delay: .24s; }
+.reveal:nth-child(4) { transition-delay: .32s; }
+.reveal:nth-child(5) { transition-delay: .40s; }
+.reveal:nth-child(6) { transition-delay: .48s; }
+
+/* ===========================================
+   NAVIGATION
+   =========================================== */
+.nav-dots { position: fixed; right: clamp(10px, 2vw, 18px); top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 8px; }
+.nav-dots button { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); border: none; cursor: pointer; transition: all .25s; padding: 0; opacity: .4; }
+.nav-dots button.active { opacity: 1; background: var(--blush); transform: scale(1.5); }
+.progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--blush); z-index: 200; transition: width .2s; }
+
+.keyboard-hint {
+  position: fixed; bottom: clamp(8px, 1.5vw, 14px); left: 50%; transform: translateX(-50%);
+  font-size: var(--small-size); color: var(--muted); z-index: 50; opacity: .7;
+}
+
+/* ===========================================
+   INLINE EDITING
+   =========================================== */
+.edit-hotzone { position: fixed; top: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+.edit-toggle { position: fixed; top: 12px; left: 12px; z-index: 10001; opacity: 0; pointer-events: none; transition: opacity .3s; background: var(--bg-card); border: 1px solid var(--divider); border-radius: 8px; padding: 6px 10px; font-size: 14px; cursor: pointer; }
+.edit-toggle.show, .edit-toggle.active { opacity: 1; pointer-events: auto; }
+.edit-banner { position: fixed; top: 0; left: 0; right: 0; padding: 6px; text-align: center; font-size: var(--small-size); background: var(--blush-soft); color: var(--ink); z-index: 9999; display: none; letter-spacing: .03em; }
+body.edit-active .edit-banner { display: block; }
+body.edit-active [contenteditable] { outline: 2px dashed var(--blush); outline-offset: 2px; border-radius: 4px; }
+body.edit-active .slide { overflow: auto; }
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+@media (max-height: 700px) {
+  :root { --slide-padding: clamp(0.8rem, 3vw, 2rem); --content-gap: clamp(0.4rem, 1vw, 0.8rem); --title-size: clamp(1.3rem, 4vw, 2.2rem); --h2-size: clamp(1rem, 2.5vw, 1.5rem); }
+}
+@media (max-height: 600px) {
+  :root { --slide-padding: clamp(0.5rem, 2vw, 1rem); --title-size: clamp(1.1rem, 3.5vw, 1.8rem); --body-size: clamp(0.65rem, 1vw, 0.85rem); }
+  .nav-dots, .keyboard-hint { display: none; }
+}
+@media (max-width: 600px) {
+  .split { flex-direction: column; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .accent-bar { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: .2s !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+<body>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Navigation dots -->
+<nav class="nav-dots" id="navDots"><button aria-label="第1页"></button><button aria-label="第2页"></button><button aria-label="第3页"></button><button aria-label="第4页"></button><button aria-label="第5页"></button><button aria-label="第6页" class="active"></button><button aria-label="第7页"></button><button aria-label="第8页"></button><button aria-label="第9页"></button><button aria-label="第10页"></button><button aria-label="第11页"></button><button aria-label="第12页"></button><button aria-label="第13页"></button><button aria-label="第14页"></button><button aria-label="第15页"></button></nav>
+
+<!-- Inline editing (opt-in) -->
+<div class="edit-hotzone" id="editHotzone"></div>
+<button class="edit-toggle" id="editToggle" title="编辑模式 (E)">✅ 完成</button>
+<div class="edit-banner">编辑模式已开启 · 点击文字直接修改 · Ctrl+S 保存 · E 退出</div>
+
+<!-- ===========================================
+     SLIDE 1: TITLE
+     =========================================== -->
+<section class="slide title-slide visible">
+  <div class="blob blob-blush" style="width:32vw;height:28vw;top:-10%;right:-8%;"></div>
+  <div class="blob blob-sage" style="width:20vw;height:22vw;bottom:-8%;left:-5%;"></div>
+  <div class="blob" style="width:10vw;height:10vw;background:#eed9c4;top:55%;left:68%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <img class="reveal" src="Icon.png" alt="贴纸番茄钟" style="width:clamp(72px,12vw,120px);margin-bottom:clamp(0.6rem,1.2vw,1.2rem);">
+    <h1 class="reveal">贴纸番茄钟</h1>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <p class="reveal" style="font-size:clamp(0.9rem,1.5vw,1.2rem);color:var(--ink-soft);max-width:420px;">
+      为 Mac 而生的可爱番茄钟<br>计时 · 种树 · 收贴纸
+    </p>
+    <p class="reveal tag" style="margin-top:clamp(0.6rem,1vw,1.2rem);">v1.1.0 · macOS</p>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 2: WHAT IS IT
+     =========================================== -->
+<section class="slide visible">
+  <div class="blob blob-blush" style="width:22vw;height:20vw;top:8%;right:-6%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">概览</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">什么是贴纸番茄钟？</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <div class="reveal" style="max-width:min(85vw,560px);">
+      <p>一款运行在 <strong>macOS 菜单栏</strong> 的番茄工作法计时器。</p>
+      <p style="margin-top:clamp(0.6rem,1vw,1rem);">
+        把计时、任务、统计打包在一个紧凑的贴纸风格窗口中，<br>
+        通过手绘树苗、自定义贴纸和 iMessage 风格的提醒弹窗，<br>
+        让专注变得轻软可触。
+      </p>
+    </div>
+    <div class="stat-card reveal" style="margin-top:clamp(1rem,1.5vw,1.5rem);max-width:min(70vw,420px);">
+      <p style="font-size:var(--body-size);color:var(--ink);font-weight:600;">
+        🍅 计时 → 🌱 种树 → 💌 贴纸提醒
+      </p>
+      <p style="font-size:var(--small-size);color:var(--muted);margin-top:4px;">
+        每一轮专注结束，菜单栏的小树会长大一点，当日累积记录到森林统计
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 3: MAIN INTERFACE
+     =========================================== -->
+<section class="slide visible">
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">主界面</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">一眼看懂，一键开始</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.4rem,0.8vw,0.8rem) auto;"></div>
+    <img class="screenshot reveal" src="图片/主界面.png" alt="主界面截图" style="max-height:min(52vh,420px);margin-top:clamp(0.5rem,1vw,1rem);">
+    <div class="grid-3 reveal" style="margin-top:clamp(0.5rem,1vw,1rem);max-width:min(85vw,660px);">
+      <div class="stat-card"><p style="font-size:var(--small-size);color:var(--ink-soft);"><strong>左上</strong><br>可编辑头像</p></div>
+      <div class="stat-card"><p style="font-size:var(--small-size);color:var(--ink-soft);"><strong>中央拨盘</strong><br>开始/暂停按钮</p></div>
+      <div class="stat-card"><p style="font-size:var(--small-size);color:var(--ink-soft);"><strong>右上</strong><br>今日Todo+统计+设置</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 4: TIMER SYSTEM
+     =========================================== -->
+<section class="slide visible">
+  <div class="blob blob-sage" style="width:20vw;height:18vw;top:10%;right:-5%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">计时系统</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">两种模式，灵活切换</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <div class="grid-2 reveal" style="max-width:min(85vw,640px);">
+      <div class="stat-card">
+        <span style="font-size:clamp(1.5rem,3vw,2.2rem);">⏳</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">倒计时</h3>
+        <p style="font-size:var(--small-size);">默认 25 分钟专注 + 5 分钟休息<br>时间可在设置中自由调节<br>完成一轮 = 种一棵树</p>
+      </div>
+      <div class="stat-card">
+        <span style="font-size:clamp(1.5rem,3vw,2.2rem);">🔄</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">正计时</h3>
+        <p style="font-size:var(--small-size);">不限时自由计时<br>每满一个周期自动计为一棵树<br>适合自由工作节奏</p>
+      </div>
+    </div>
+    <div class="stat-card reveal" style="margin-top:clamp(0.8rem,1.2vw,1.2rem);max-width:min(80vw,560px);">
+      <h3 style="font-size:var(--h3-size);">快速开始预设</h3>
+      <p style="font-size:var(--small-size);">读书 25min · 健身 15min · 写作 25min · 整理 10min<br>点击直接启动，不用调时间、选项目</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 5: THREE WAYS TO START
+     =========================================== -->
+<section class="slide visible">
+  <div class="blob blob-blush" style="width:18vw;height:16vw;bottom:5%;left:-4%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">启动方式</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">三种方式开始专注</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <div class="grid-3 reveal" style="max-width:min(85vw,760px);">
+      <div class="stat-card">
+        <span style="font-size:clamp(1.3rem,2.5vw,2rem);">🎯</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">点击拨盘</h3>
+        <p style="font-size:var(--small-size);">主界面中央圆环<br>点击开始/暂停<br>窗口自动最小化</p>
+      </div>
+      <div class="stat-card">
+        <span style="font-size:clamp(1.3rem,2.5vw,2rem);">⚡</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">快速开始卡</h3>
+        <p style="font-size:var(--small-size);">打开今日面板<br>点击预设场景卡片<br>一键启动专注</p>
+      </div>
+      <div class="stat-card">
+        <span style="font-size:clamp(1.3rem,2.5vw,2rem);">⌨️</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">全局快捷键</h3>
+        <p style="font-size:var(--small-size);">默认 Control+Option+P<br>任何时候按下即可开始<br>无需切回主窗口</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 6: REMINDER POPUPS
+     =========================================== -->
+<section class="slide visible">
+  <div class="blob blob-sage" style="width:24vw;height:22vw;top:-6%;right:-8%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">提醒弹窗</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">macOS 原生风格提醒</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <div class="stat-card reveal" style="max-width:min(85vw,640px);padding:clamp(1rem,2vw,2rem);">
+      <div class="grid-2">
+        <div style="text-align:left;">
+          <ul class="bullet-list">
+            <li>透明背景 + 毛玻璃卡片</li>
+            <li>位于屏幕顶部（左上/上中/右上）</li>
+            <li>专注结束弹出操作按钮</li>
+            <li>「休息一下」或「下一棵树」</li>
+          </ul>
+        </div>
+        <div style="text-align:left;">
+          <ul class="bullet-list">
+            <li>带按钮的提醒不会自动消失</li>
+            <li>14 种 macOS 系统提示音</li>
+            <li>四类提醒文案均可自定义</li>
+            <li>支持触觉反馈</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="stat-card reveal" style="margin-top:clamp(0.8rem,1.2vw,1.2rem);max-width:min(75vw,480px);">
+      <p style="font-size:var(--small-size);color:var(--ink-soft);">
+        "宝宝辛苦啦~ ♡ 休息一下，喝口水。"<br>
+        "专注开始啦 ♡ 计时已经开始，慢慢来。"
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 7: MENU BAR TREE
+     =========================================== -->
+<section class="slide visible">
+  <div class="blob blob-blush" style="width:16vw;height:18vw;top:15%;right:-5%;"></div>
+  <div class="blob blob-sage" style="width:14vw;height:14vw;bottom:8%;left:-3%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">菜单栏小树</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">种一棵看得见的树</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <div class="grid-3 reveal" style="max-width:min(85vw,700px);">
+      <div class="stat-card">
+        <span style="font-size:clamp(1.3rem,2.5vw,2rem);">🌱</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">5 种树样式</h3>
+        <p style="font-size:var(--small-size);">圆润幼苗 · 像素小树<br>小盆栽 · 松树剪影<br>手账印章</p>
+      </div>
+      <div class="stat-card">
+        <span style="font-size:clamp(1.3rem,2.5vw,2rem);">📈</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">动态生长</h3>
+        <p style="font-size:var(--small-size);">5 个生长阶段<br>随倒计时进度变化<br>从幼苗到满树</p>
+      </div>
+      <div class="stat-card">
+        <span style="font-size:clamp(1.3rem,2.5vw,2rem);">🔋</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">休息充电</h3>
+        <p style="font-size:var(--small-size);">休息期间切换<br>充电电池样式<br>不计算为树数</p>
+      </div>
+    </div>
+    <p class="reveal" style="margin-top:clamp(0.6rem,1vw,1rem);font-size:var(--small-size);color:var(--muted);">
+      Retina 适配 · 显示剩余时间和今日树数 · 按住 ⌘ 可拖动调整位置
+    </p>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 8: TODAY PANEL
+     =========================================== -->
+<section class="slide visible">
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">今日待办</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">Todolist + 快速开始</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.4rem,0.8vw,0.8rem) auto;"></div>
+    <img class="screenshot reveal" src="图片/“今日”板块.png" alt="今日板块截图" style="max-height:min(48vh,360px);margin-top:clamp(0.4rem,0.8vw,0.8rem);">
+    <div class="grid-2 reveal" style="margin-top:clamp(0.5rem,1vw,1rem);max-width:min(85vw,600px);">
+      <div>
+        <ul class="bullet-list">
+          <li>添加任务 + 设定预计分钟数</li>
+          <li>拖拽调整排序</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="bullet-list">
+          <li>专注结束自动累计进度</li>
+          <li>完成项可撤回</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 9: PROJECT MANAGEMENT
+     =========================================== -->
+<section class="slide visible">
+  <div class="blob blob-blush" style="width:18vw;height:18vw;top:8%;right:-6%;"></div>
+  <div class="blob blob-sage" style="width:12vw;height:14vw;bottom:4%;left:-3%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">项目管理</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">分类你的每一棵树</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <div class="grid-2 reveal" style="max-width:min(85vw,640px);">
+      <div class="stat-card">
+        <span style="font-size:clamp(1.3rem,2.5vw,2rem);">📂</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">多项目 + 颜色标记</h3>
+        <p style="font-size:var(--small-size);">创建/重命名/删除项目<br>8 种颜色区分<br>最多 24 个项目</p>
+      </div>
+      <div class="stat-card">
+        <span style="font-size:clamp(1.3rem,2.5vw,2rem);">🔀</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">归属与转移</h3>
+        <p style="font-size:var(--small-size);">Todolist 和统计按项目归类<br>未分类的专注结束后<br>可转移到指定项目</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 10: STICKERS + BACKGROUND
+     =========================================== -->
+<section class="slide visible">
+  <div class="blob blob-sage" style="width:20vw;height:18vw;bottom:10%;right:-6%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">个性化</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">贴纸系统 + 自定义背景</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <div class="grid-2 reveal" style="max-width:min(85vw,660px);">
+      <div class="stat-card">
+        <span style="font-size:clamp(1.3rem,2.5vw,2rem);">🏷️</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">DIY 贴纸</h3>
+        <p style="font-size:var(--small-size);">上传图片作为贴纸<br>自由拖动/旋转/翻转/缩放<br>专用编辑模式 · 最多 24 张</p>
+      </div>
+      <div class="stat-card">
+        <span style="font-size:clamp(1.3rem,2.5vw,2rem);">🖼️</span>
+        <h3 style="margin-top:clamp(0.3rem,0.5vw,0.5rem);">自定义背景</h3>
+        <p style="font-size:var(--small-size);">上传背景图 · 铺满/完整<br>调节透明度<br>自动匹配配色方案</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 11: FOREST STATISTICS
+     =========================================== -->
+<section class="slide visible">
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">森林统计</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">12 周专注热力图</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.4rem,0.8vw,0.8rem) auto;"></div>
+    <img class="screenshot reveal" src="图片/统计板块.png" alt="统计面板截图" style="max-height:min(45vh,340px);margin-top:clamp(0.4rem,0.8vw,0.8rem);">
+    <div class="grid-3 reveal" style="margin-top:clamp(0.5rem,1vw,1rem);max-width:min(85vw,660px);">
+      <div class="stat-card"><p style="font-size:var(--small-size);color:var(--ink-soft);"><strong>热力图</strong><br>类似 GitHub 贡献图</p></div>
+      <div class="stat-card"><p style="font-size:var(--small-size);color:var(--ink-soft);"><strong>双指标</strong><br>树数 / 专注时长</p></div>
+      <div class="stat-card"><p style="font-size:var(--small-size);color:var(--ink-soft);"><strong>项目筛选</strong><br>按项目查看</p></div>
+    </div>
+    <p class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);font-size:var(--small-size);color:var(--muted);">
+      今日 / 本周 / 本月 三级汇总
+    </p>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 12: SETTINGS SCREENSHOTS
+     =========================================== -->
+<section class="slide">
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">个性化设置</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">丰富的自定义选项</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.4rem,0.8vw,0.8rem) auto;"></div>
+    <div class="reveal" style="display:flex;gap:clamp(6px,1vw,12px);justify-content:center;flex-wrap:wrap;margin-top:clamp(0.4rem,0.8vw,0.8rem);">
+      <img class="screenshot" src="图片/设置1.png" alt="设置1" style="max-height:min(40vh,300px);max-width:32%;">
+      <img class="screenshot" src="图片/设置2.png" alt="设置2" style="max-height:min(40vh,300px);max-width:32%;">
+      <img class="screenshot" src="图片/设置3.png" alt="设置3" style="max-height:min(40vh,300px);max-width:32%;">
+    </div>
+    <p class="reveal" style="margin-top:clamp(0.5rem,0.8vw,0.8rem);font-size:var(--small-size);color:var(--muted);">
+      外观主题 · 自定义背景 · 提醒位置与声音 · 快捷键 · 菜单栏树样式 · 项目与贴纸管理
+    </p>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 13: THEMES & DETAILS
+     =========================================== -->
+<section class="slide">
+  <div class="blob blob-blush" style="width:16vw;height:16vw;top:12%;right:-5%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">更多设置</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">外观、声音、快捷键</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <div class="grid-2 reveal" style="max-width:min(85vw,680px);">
+      <div class="stat-card">
+        <h3>🎨 4 种主题</h3>
+        <p style="font-size:var(--small-size);">奶油 · 薄荷 · 樱桃 · 夜晚<br>可跟随系统深浅色自动切换</p>
+      </div>
+      <div class="stat-card">
+        <h3>🔔 提醒声音</h3>
+        <p style="font-size:var(--small-size);">14 种 macOS 系统音效<br>Basso / Blow / Frog / Ping…</p>
+      </div>
+      <div class="stat-card">
+        <h3>⌨️ 快捷键</h3>
+        <p style="font-size:var(--small-size);">默认 Ctrl+Alt+P<br>进入捕获模式自定义</p>
+      </div>
+      <div class="stat-card">
+        <h3>✏️ 自定义文案</h3>
+        <p style="font-size:var(--small-size);">专注开始/结束<br>休息开始/结束<br>标题正文均可改</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 14: INSTALLATION
+     =========================================== -->
+<section class="slide">
+  <div class="blob blob-sage" style="width:20vw;height:20vw;top:-5%;right:-8%;"></div>
+  <div class="blob blob-blush" style="width:14vw;height:16vw;bottom:6%;left:-4%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <span class="tag reveal">下载安装</span>
+    <h2 class="reveal" style="margin-top:clamp(0.3rem,0.6vw,0.6rem);">三步开始使用</h2>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <div class="reveal" style="max-width:min(85vw,560px);text-align:left;">
+      <div class="stat-card" style="text-align:left;margin-bottom:clamp(0.5rem,0.8vw,0.8rem);">
+        <p style="font-size:var(--body-size);"><strong>1.</strong> 前往 <strong>GitHub Releases</strong> 下载最新 .dmg</p>
+      </div>
+      <div class="stat-card" style="text-align:left;margin-bottom:clamp(0.5rem,0.8vw,0.8rem);">
+        <p style="font-size:var(--body-size);"><strong>2.</strong> 将 <strong>贴纸番茄钟.app</strong> 拖入「应用程序」</p>
+      </div>
+      <div class="stat-card" style="text-align:left;">
+        <p style="font-size:var(--body-size);"><strong>3.</strong> 终端解除隔离（只需一次）：</p>
+        <div class="code-block" style="margin-top:6px;">xattr -d com.apple.quarantine /Applications/贴纸番茄钟.app</div>
+      </div>
+    </div>
+    <p class="reveal" style="margin-top:clamp(0.6rem,1vw,1rem);font-size:var(--small-size);color:var(--muted);">
+      ⚠ 应用未签名，首次使用必须执行上述命令 · 仅支持 macOS (Apple Silicon)
+    </p>
+  </div>
+</section>
+
+<!-- ===========================================
+     SLIDE 15: CLOSING
+     =========================================== -->
+<section class="slide">
+  <div class="blob blob-blush" style="width:28vw;height:24vw;top:-8%;right:-10%;"></div>
+  <div class="blob blob-sage" style="width:18vw;height:20vw;bottom:-6%;left:-6%;"></div>
+  <div class="blob" style="width:8vw;height:8vw;background:#eed9c4;top:50%;left:60%;"></div>
+  <div class="accent-bar accent-bar-l"></div>
+  <div class="accent-bar accent-bar-r"></div>
+  <div class="slide-content center">
+    <img class="reveal" src="Icon.png" alt="贴纸番茄钟" style="width:clamp(60px,10vw,96px);margin-bottom:clamp(0.6rem,1vw,1rem);">
+    <h1 class="reveal" style="font-size:clamp(1.4rem,4vw,2.8rem);">开始你的第一棵树吧</h1>
+    <div class="divider-line reveal" style="margin: clamp(0.5rem,1vw,1rem) auto;"></div>
+    <p class="reveal" style="font-size:clamp(0.85rem,1.3vw,1.05rem);color:var(--ink-soft);max-width:480px;">
+      定时 · 种树 · 收贴纸<br>让专注变得软软的、可爱的
+    </p>
+    <div class="reveal" style="margin-top:clamp(1rem,1.5vw,1.5rem);">
+      <p style="font-size:var(--small-size);color:var(--muted);">
+        Yukon594 / stickers-pomodoro · MIT License
+      </p>
+      <p style="font-size:var(--small-size);color:var(--muted);margin-top:4px;">
+        github.com/Yukon594/stickers-pomodoro
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Keyboard hint -->
+<div class="keyboard-hint" id="kbdHint">← → 键导航 · E 编辑模式</div>
+
+<!-- ===========================================
+     JAVASCRIPT: Slide Controller + Editing
+     =========================================== -->
+<script>
+(function() {
+  /* === Slide Presentation Controller === */
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  let currentIdx = 0;
+
+  /* Intersection Observer for animation triggers */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        currentIdx = Array.from(slides).indexOf(entry.target);
+        updateNav();
+      }
+    });
+  }, { threshold: 0.3 });
+  slides.forEach(s => observer.observe(s));
+
+  /* Navigation dots */
+  const navDots = document.getElementById('navDots');
+  for (let i = 0; i < totalSlides; i++) {
+    const btn = document.createElement('button');
+    btn.setAttribute('aria-label', `第${i+1}页`);
+    btn.addEventListener('click', () => {
+      slides[i].scrollIntoView({ behavior: 'smooth' });
+    });
+    navDots.appendChild(btn);
+  }
+  const dotBtns = navDots.querySelectorAll('button');
+
+  /* Progress bar */
+  const progressBar = document.getElementById('progressBar');
+  const kbdHint = document.getElementById('kbdHint');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+    if (scrollTop > window.innerHeight * 0.3) {
+      kbdHint.style.opacity = '0';
+    } else {
+      kbdHint.style.opacity = '0.7';
+    }
+  });
+
+  function updateNav() {
+    dotBtns.forEach((b, i) => b.classList.toggle('active', i === currentIdx));
+  }
+
+  /* Keyboard navigation */
+  document.addEventListener('keydown', (e) => {
+    if (e.target.getAttribute('contenteditable')) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+      e.preventDefault();
+      const next = Math.min(currentIdx + 1, totalSlides - 1);
+      slides[next].scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const prev = Math.max(currentIdx - 1, 0);
+      slides[prev].scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+
+  /* === Inline Editing (Opt-in) === */
+  const editToggle = document.getElementById('editToggle');
+  const editHotzone = document.getElementById('editHotzone');
+  const editableSelectors = 'h1, h2, h3, p, li, .tag, strong, span:not(.num)';
+
+  const editor = {
+    isActive: false,
+    toggleEditMode() {
+      this.isActive = !this.isActive;
+      document.body.classList.toggle('edit-active', this.isActive);
+      editToggle.classList.toggle('active', this.isActive);
+      editToggle.textContent = this.isActive ? '✅ 完成' : '✏️ 编辑';
+
+      if (this.isActive) {
+        document.querySelectorAll(editableSelectors).forEach(el => {
+          if (!el.closest('.code-block') && !el.closest('script') && !el.closest('style') && !el.closest('nav')) {
+            el.setAttribute('contenteditable', 'true');
+          }
+        });
+      } else {
+        document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+      }
+    }
+  };
+
+  editToggle.addEventListener('click', () => editor.toggleEditMode());
+
+  let hideTimeout = null;
+  editHotzone.addEventListener('mouseenter', () => {
+    clearTimeout(hideTimeout);
+    editToggle.classList.add('show');
+  });
+  editHotzone.addEventListener('mouseleave', () => {
+    hideTimeout = setTimeout(() => {
+      if (!editor.isActive) editToggle.classList.remove('show');
+    }, 400);
+  });
+  editToggle.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+  editToggle.addEventListener('mouseleave', () => {
+    hideTimeout = setTimeout(() => {
+      if (!editor.isActive) editToggle.classList.remove('show');
+    }, 400);
+  });
+  editHotzone.addEventListener('click', () => editor.toggleEditMode());
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.key === 'e' || e.key === 'E') && !e.target.getAttribute('contenteditable') && !e.ctrlKey && !e.metaKey) {
+      editor.toggleEditMode();
+    }
+    if (e.key === 's' && (e.ctrlKey || e.metaKey) && editor.isActive) {
+      e.preventDefault();
+      exportFile();
+    }
+  });
+
+  function exportFile() {
+    const editableEls = Array.from(document.querySelectorAll('[contenteditable]'));
+    editableEls.forEach(el => el.removeAttribute('contenteditable'));
+    document.body.classList.remove('edit-active');
+    editToggle.classList.remove('active', 'show');
+
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+    document.body.classList.add('edit-active');
+    editableEls.forEach(el => el.setAttribute('contenteditable', 'true'));
+    editToggle.classList.add('active');
+
+    const blob = new Blob([html], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = '贴纸番茄钟介绍.html';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+})();
+</script>
+
+</body>
+</html>
